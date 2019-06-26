@@ -2,19 +2,14 @@
 import time
 from picamera import PiCamera
 
-camera.start_preview()
-time.sleep(30)
-camera.capture('/home/pi/Desktop/image.jpg')
-#camera.stop_preview()
-
-camera = cv2.VideoCapture(0)
+#camera = cv2.VideoCapture(0)
 pictureNumber = 0
 while True:
     #picam
     #region
     camera.start_preview()
     time.sleep(30)
-    camera.capture('image%s.jpg'%(pictureNumber))
+    camera.capture('img%s.jpg'%('{0:05d}'.format(pictureNumber)))
     #endregion 
 
     #cv2
