@@ -4,6 +4,8 @@ import serial
 from picamera import PiCamera
 
 
+#ffmpeg -i img%5d.jpg -t 30 timelaps.mp4
+
 #camera = cv2.VideoCapture(0)
 camera = PiCamera()
 
@@ -21,7 +23,7 @@ while True:
     camera.capture('img%s.jpg'%('{0:05d}'.format(pictureNumber)))
     camera.stop_preview()
     arduino.write('OFF'.encode('ascii'))
-    time.sleep(115)
+    time.sleep(175)
     #endregion 
 
     #cv2
