@@ -20,30 +20,32 @@ def put_chart_in_image(chart, img):
 
     #black
     chimage[-(y+40):,-x:,:][np.where((chart<=[80,80,80]).all(axis=2))] = chart[np.where((chart<=[80,80,80]).all(axis=2))]
-    cv.imshow('Test', chimage)
+    # cv.imshow('Test', chimage)
     return chimage
     # if cv.waitKey() == ord('q'):
     #     cv.destroyAllWindows()
 
 images = glob.glob('images/*.jpg')
-path = input("Enter path to csv data file: ") + '.csv'
-messung = pd.read_csv('path', sep=';', index_col='Zeit')
+path = 'messungen/' + input("Enter path to csv data file: ") + '.csv'
+messung = pd.read_csv(path, sep=',', index_col='time')
 
 for img_name in images:
     img = cv.imread(img_name)
-    img_name = img_name.replace({'.jpg':'','img':'', 'images\\\\':''})
+    img_name = img_name.replace('.jpg','')
+    img_name = img_name.replace('img','')
+    img_name = img_name.replace('images\\','')
     img_seconds = int(img_name)
 
     chart_for_timelapse(messung,
-                        cols=['Cap_Dirt', 'Cap_Leaf'],
+                        cols=['cap_dirt', 'cap_leaf'],
                         max_i=img_seconds, 
-                        x_lim=[0, messund.index[-1]], 
-                        y_lim=[0, 300], 
-                        x_title='Zeit', 
+                        x_lim=[0, messung.index[-1]], 
+                        y_lim=[1000, 3000], 
+                        x_title='Zeit in Sekunden', 
                         y_title='Analogwert')
     chart = cv.imread("chart.png")
     chimage = put_chart_in_image(chart, img)
-    cv.imwrite('chimg' + img_name + '.jpg', chimage) 
+    cv.imwrite('chimages/chimg' + img_name + '.jpg', chimage) 
 
 img = cv.imread("img00000.jpg")
 chart = cv.imread("lol.png")

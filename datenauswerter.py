@@ -23,6 +23,8 @@ def chart_for_timelapse(df, max_i, x_lim, y_lim, x_title, y_title, cols):
     plot.set_xlabel(x_title, fontdict = fontdict_x)
     plot.set_ylabel(y_title, fontdict = fontdict_y)
     plt.savefig('chart.png')
+    plot.clear()
+    plt.close(fig)
 
 # Messung = pd.read_csv('m2.csv', sep=';', index_col='Zeit')
 # chart_for_timelapse(Messung,
