@@ -19,7 +19,7 @@ def chart_for_timelapse(df, max_i, x_lim, y_lim, x_title, y_title, cols):
     plot.set_xlim(x_lim[0], x_lim[1])
     plot.set_ylim(y_lim[0], y_lim[1])
 
-    plot.plot(df.loc[:max_i, cols], linewidth=10)
+    plot.plot(df.loc[:max_i, cols], linewidth=7)
     plot.set_xlabel(x_title, fontdict = fontdict_x)
     plot.set_ylabel(y_title, fontdict = fontdict_y)
     plt.savefig('chart.png')
