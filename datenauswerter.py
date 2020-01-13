@@ -1,6 +1,8 @@
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
+import io
+from PIL import Image
 
 
 def chart_for_timelapse(df, max_i, x_lim, y_lim, x_title, y_title, cols):
@@ -19,12 +21,19 @@ def chart_for_timelapse(df, max_i, x_lim, y_lim, x_title, y_title, cols):
     plot.set_xlim(x_lim[0], x_lim[1])
     plot.set_ylim(y_lim[0], y_lim[1])
 
-    plot.plot(df.loc[:max_i, cols], linewidth=7)
+    plot.plot(df.loc[:max_i, cols], linewidth=3)
     plot.set_xlabel(x_title, fontdict = fontdict_x)
     plot.set_ylabel(y_title, fontdict = fontdict_y)
-    plt.savefig('chart.png')
+    #plt.savefig('chart.png')
+    buf = io.BytesIO()
+    plt.savefig(buf, format='png', transparent=True)
+    buf.seek(0)
+    img = Image.open(buf)
     plot.clear()
     plt.close(fig)
+    
+
+    return img
 
 # Messung = pd.read_csv('m2.csv', sep=';', index_col='Zeit')
 # chart_for_timelapse(Messung,

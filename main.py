@@ -6,6 +6,7 @@ from picamera import PiCamera
 
 #ffmpeg -i img%5d.jpg -t 30 timelapse.mp4
 #ffmpeg -i chimg%16d.jpg -t 30 timelapse2.mp4
+#ffmpeg -framerate 30 -i image%04d.jpg -c:v libx264 -r 30 outputfile.mp4
 
 #camera = cv2.VideoCapture(0)
 camera = PiCamera()
