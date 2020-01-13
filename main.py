@@ -4,7 +4,8 @@ import serial
 from picamera import PiCamera
 
 
-#ffmpeg -i img%5d.jpg -t 30 timelaps.mp4
+#ffmpeg -i img%5d.jpg -t 30 timelapse.mp4
+#ffmpeg -i chimg%16d.jpg -t 30 timelapse2.mp4
 
 #camera = cv2.VideoCapture(0)
 camera = PiCamera()

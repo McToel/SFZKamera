@@ -28,13 +28,15 @@ def put_chart_in_image(chart, img):
 images = glob.glob('images/*.jpg')
 path = 'messungen/' + input("Enter path to csv data file: ") + '.csv'
 messung = pd.read_csv(path, sep=',', index_col='time')
+bar = Bar('processing images', max=len(images))
 
-for img_name in images:
+for i, img_name in enumerate(images):
     img = cv.imread(img_name)
     img_name = img_name.replace('.jpg','')
     img_name = img_name.replace('img','')
     img_name = img_name.replace('images\\','')
     img_seconds = int(img_name)
+    img_name = '%s.jpg'%('{0:06d}'.format(i))
 
     chart_for_timelapse(messung,
                         cols=['cap_dirt', 'cap_leaf'],
@@ -45,9 +47,11 @@ for img_name in images:
                         y_title='Analogwert')
     chart = cv.imread("chart.png")
     chimage = put_chart_in_image(chart, img)
-    cv.imwrite('chimages/chimg' + img_name + '.jpg', chimage) 
+    cv.imwrite('chimages/' + img_name + '.jpg', chimage) 
+    bar.next()
 
-img = cv.imread("img00000.jpg")
-chart = cv.imread("lol.png")
-put_chart_in_image(chart, img)
+bar.finish()
+# img = cv.imread("img00000.jpg")
+# chart = cv.imread("lol.png")
+# put_chart_in_image(chart, img)
 #'img%s.jpg'%('{0:016d}'.format(time.time() - start_time))
