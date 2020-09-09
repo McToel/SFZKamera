@@ -17,13 +17,12 @@ print("running")
 pictureNumber = 0
 last_time = start_time
 while True:
-    # picam
     if (time.time() - last_time) > 60 * 5:
         last_time = time.time()
         arduino.write('ON'.encode('ascii'))
         camera.start_preview()
         time.sleep(10)
-        camera.capture('images/img{0:016d}.jpg'.format(time.time() - start_time))
+        camera.capture('images/img{0:016d}.jpg'.format(int(time.time() - start_time)))
         camera.capture('static/latest.jpg')
         camera.stop_preview()
         arduino.write('OFF'.encode('ascii'))
