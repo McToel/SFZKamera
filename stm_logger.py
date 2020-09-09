@@ -3,7 +3,7 @@ import serial
 import datetime
 import pandas as pd
 
-PORT = '/dev/ttyACM0'
+PORT = '/dev/ttyACM1'
 BAUDRATE = 9600
 
 print('starting')
