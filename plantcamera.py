@@ -17,13 +17,13 @@ print("running")
 pictureNumber = 0
 while True:
     last_time = time.time()
-    arduino.write('ON'.encode('ascii'))
+    arduino.write('ON\n'.encode('ascii'))
     camera.start_preview()
     time.sleep(10)
     camera.capture('images/img{0:016d}.jpg'.format(int(time.time() - start_time)))
     camera.capture('static/latest.jpg')
     camera.stop_preview()
-    arduino.write('OFF'.encode('ascii'))
+    arduino.write('OFF\n'.encode('ascii'))
 
     pictureNumber += 1
 
